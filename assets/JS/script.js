@@ -17,8 +17,8 @@ const savedCities = JSON.parse(localStorage.getItem("cities")) || [];
 
 const apiKey = "38a46680df4a9fa4e4fa2e048d140e12";
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+
+function getWeather() {
   let userInput = input.value.trim();
   const newButton = document.createElement("button");
     newButton.textContent = userInput;
@@ -113,7 +113,9 @@ if (!savedCities.includes(userInput)) {
   localStorage.setItem("cities", JSON.stringify(savedCities));
 }
     });
-});
+}
+
+
 window.addEventListener("load", () => {
     
     // Loop through the saved cities and create a button for each one
@@ -123,6 +125,14 @@ window.addEventListener("load", () => {
       newButton.textContent = savedCities[i];
       newButton.classList.add("btn","my-1", "btn-danger", "w-100");
       buttonContainer.appendChild(newButton);
+      newButton.addEventListener("click", () => {
+        input.value = savedCities[i];
+        getWeather();
+      })
     }
   });
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    getWeather();
+  })
   
