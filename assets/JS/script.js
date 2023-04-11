@@ -103,9 +103,9 @@ function getWeather() {
         dates[2].textContent = dayjs(data.list[20].dt_txt).format(
           "MMMM D, YYYY"
         );
-        temp[3].textContent = `${data.list[28].main.temp} F`;
-        humidity[3].textContent = `${data.list[28].main.humidity}%`;
-        wind[3].textContent = `${data.list[28].wind.speed} MPH`;
+        temp[3].textContent = `Temp: ${data.list[28].main.temp} F`;
+        humidity[3].textContent = `Humidity: ${data.list[28].main.humidity}%`;
+        wind[3].textContent = `Wind: ${data.list[28].wind.speed} MPH`;
         card[3].setAttribute(
           "src",
           `http://openweathermap.org/img/w/${data.list[28].weather[0].icon}.png`
@@ -113,9 +113,9 @@ function getWeather() {
         dates[3].textContent = dayjs(data.list[28].dt_txt).format(
           "MMMM D, YYYY"
         );
-        temp[4].textContent = `${data.list[35].main.temp} F`;
-        humidity[4].textContent = `${data.list[35].main.humidity}%`;
-        wind[4].textContent = `${data.list[35].wind.speed} MPH`;
+        temp[4].textContent = `Temp: ${data.list[35].main.temp} F`;
+        humidity[4].textContent = `Humidity: ${data.list[35].main.humidity}%`;
+        wind[4].textContent = `Wind: ${data.list[35].wind.speed} MPH`;
         card[4].setAttribute(
           "src",
           `http://openweathermap.org/img/w/${data.list[35].weather[0].icon}.png`
