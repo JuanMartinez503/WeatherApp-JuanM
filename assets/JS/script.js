@@ -19,12 +19,11 @@ const apiKey = "38a46680df4a9fa4e4fa2e048d140e12";
 
 function getWeather() {
   let userInput = input.value.trim();
-//the first fetch gets the current weather from the api
+  //the first fetch gets the current weather from the api
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&appid=${apiKey}&units=imperial`
   )
     .then(function (response) {
-
       return response.json();
     })
     .then(function (data) {
@@ -42,7 +41,7 @@ function getWeather() {
         localStorage.setItem("cities", JSON.stringify(savedCities));
         //creates a button and appends to the list of recent searches
         const newButton = document.createElement("button");
-        newButton.textContent = userInput
+        newButton.textContent = userInput;
         newButton.classList.add("btn", "my-1", "btn-secondary", "w-100");
         buttonContainer.appendChild(newButton);
         newButton.addEventListener("click", (e) => {
@@ -62,7 +61,7 @@ function getWeather() {
         `http://openweathermap.org/img/w/${data.weather[0].icon}.png`
       );
     });
-    //the second fetch gets the 5 day forecast from the api, it returns an array length of 40
+  //the second fetch gets the 5 day forecast from the api, it returns an array length of 40
   fetch(
     `https://api.openweathermap.org/data/2.5/forecast?q=${userInput}&units=imperial&appid=${apiKey}`
   )
@@ -83,8 +82,8 @@ function getWeather() {
           `http://openweathermap.org/img/w/${data.list[4].weather[0].icon}.png`
         );
         dates[0].textContent = dayjs(data.list[4].dt_txt).format(
-          "MMMM D, YYYY")
-      
+          "MMMM D, YYYY"
+        );
 
         temp[1].textContent = `Temp: ${data.list[12].main.temp} F`;
         humidity[1].textContent = `Humidity: ${data.list[12].main.humidity}%`;
