@@ -19,7 +19,7 @@ const apiKey = "38a46680df4a9fa4e4fa2e048d140e12";
 
 function getWeather() {
   let userInput = input.value.trim();
-
+//the first fetch gets the current weather from the api
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&appid=${apiKey}&units=imperial`
   )
@@ -45,8 +45,9 @@ function getWeather() {
         newButton.textContent = userInput
         newButton.classList.add("btn", "my-1", "btn-secondary", "w-100");
         buttonContainer.appendChild(newButton);
-        newButton.addEventListener("click", () => {
-          input.value = this.innerHTML;
+        newButton.addEventListener("click", (e) => {
+          console.log(this);
+          input.value = e.target.textContent;
           getWeather();
         });
       }
@@ -61,6 +62,7 @@ function getWeather() {
         `http://openweathermap.org/img/w/${data.weather[0].icon}.png`
       );
     });
+    //the second fetch gets the 5 day forecast from the api, it returns an array length of 40
   fetch(
     `https://api.openweathermap.org/data/2.5/forecast?q=${userInput}&units=imperial&appid=${apiKey}`
   )
@@ -69,6 +71,7 @@ function getWeather() {
     })
     .then(function (data) {
       console.log(data);
+      //I create a for loop from the array length of 40 to get the 5 day forecast, I had to think about what number of the loop that I wanted to use.
       for (let i = 0; i < data.list.length; i++) {
         let date = new Date(data.list[i].dt_txt);
         console.log(date);
@@ -91,7 +94,7 @@ function getWeather() {
           `http://openweathermap.org/img/w/${data.list[12].weather[0].icon}.png`
         );
         dates[1].textContent = dayjs(data.list[12].dt_txt).format(
-          "dddd, MMMM D YYYY"
+          " MMMM D YYYY"
         );
         temp[2].textContent = `Temp: ${data.list[20].main.temp} F`;
         humidity[2].textContent = `Humidity: ${data.list[20].main.humidity}%`;
@@ -143,10 +146,11 @@ function loading() {
   }
 }
 
-
+//the submit event that starts the function
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   getWeather();
 });
 
 loading();
+//loads on page load
