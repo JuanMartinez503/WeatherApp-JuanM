@@ -14,7 +14,8 @@ const dates = document.querySelectorAll(".date");
 const card = document.querySelectorAll(".card-img-top");
 const buttonContainer = document.querySelector(".button-container");
 const savedCities = JSON.parse(localStorage.getItem("cities")) || [];
-
+const todayContainer = document.getElementById("today")
+const otherContainers = document.querySelectorAll('.other-containers')
 const apiKey = "38a46680df4a9fa4e4fa2e048d140e12";
 
 function getWeather() {
@@ -51,11 +52,15 @@ function getWeather() {
         });
       }
 
-      nowDate.textContent = dayjs(data.dt_txt).format("MMMM D, YYYY");
+      nowDate.textContent = "Today";
       city.textContent = data.name;
-      nowTemp.textContent = `Temp: ${data.main.temp} F`;
-      nowHum.textContent = `Humidity: ${data.main.humidity}%`;
-      nowWind.textContent = `Wind: ${data.wind.speed} MPH`;
+      nowTemp.innerHTML = `<i class="fas fa-temperature-high"></i>: ${data.main.temp_max} ℉`;
+      nowHum.innerHTML = `<i class="fas fa-temperature-low"></i>: ${data.main.temp_min} ℉`;
+      nowWind.innerHTML = `<i class="fas fa-wind"></i>: ${data.wind.speed} mph`;
+      todayContainer.classList.add('now-container')
+      otherContainers.forEach(cont=>{
+        return cont.classList.add('now-container')
+      })
       nowIMG.setAttribute(
         "src",
         `http://openweathermap.org/img/w/${data.weather[0].icon}.png`
@@ -74,56 +79,52 @@ function getWeather() {
       for (let i = 0; i < data.list.length; i++) {
         let date = new Date(data.list[i].dt_txt);
         console.log(date);
-        temp[0].textContent = `Temp: ${data.list[4].main.temp} F`;
-        humidity[0].textContent = `Humidity: ${data.list[4].main.humidity}%`;
-        wind[0].textContent = `Wind: ${data.list[4].wind.speed} MPH`;
+        temp[0].innerHTML = `<i class="fas fa-temperature-high"></i>: ${data.list[4].main.temp} ℉`;
+        wind[0].innerHTML = `<i class="fas fa-wind"></i>: ${data.list[4].wind.speed} mph`;
+
         card[0].setAttribute(
           "src",
           `http://openweathermap.org/img/w/${data.list[4].weather[0].icon}.png`
         );
         dates[0].textContent = dayjs(data.list[4].dt_txt).format(
-          "MMMM D, YYYY"
+          "dddd"
         );
 
-        temp[1].textContent = `Temp: ${data.list[12].main.temp} F`;
-        humidity[1].textContent = `Humidity: ${data.list[12].main.humidity}%`;
-        wind[1].textContent = `Wind ${data.list[12].wind.speed} MPH`;
+        temp[1].innerHTML = `<i class="fas fa-temperature-high"></i>: ${data.list[12].main.temp} ℉`;
+        wind[1].innerHTML = `<i class="fas fa-wind"></i>: ${data.list[12].wind.speed} mph`;
         card[1].setAttribute(
           "src",
           `http://openweathermap.org/img/w/${data.list[12].weather[0].icon}.png`
         );
         dates[1].textContent = dayjs(data.list[12].dt_txt).format(
-          " MMMM D YYYY"
+          " dddd"
         );
-        temp[2].textContent = `Temp: ${data.list[20].main.temp} F`;
-        humidity[2].textContent = `Humidity: ${data.list[20].main.humidity}%`;
-        wind[2].textContent = `Wind: ${data.list[20].wind.speed} MPH`;
+        temp[2].innerHTML = `<i class="fas fa-temperature-high"></i>: ${data.list[20].main.temp} ℉`;
+        wind[2].innerHTML = `<i class="fas fa-wind"></i>: ${data.list[20].wind.speed} mph`;
         card[2].setAttribute(
           "src",
           `http://openweathermap.org/img/w/${data.list[20].weather[0].icon}.png`
         );
         dates[2].textContent = dayjs(data.list[20].dt_txt).format(
-          "MMMM D, YYYY"
+          "dddd"
         );
-        temp[3].textContent = `Temp: ${data.list[28].main.temp} F`;
-        humidity[3].textContent = `Humidity: ${data.list[28].main.humidity}%`;
-        wind[3].textContent = `Wind: ${data.list[28].wind.speed} MPH`;
+        temp[3].innerHTML = `<i class="fas fa-temperature-high"></i>: ${data.list[28].main.temp} ℉`
+        wind[3].innerHTML = `<i class="fas fa-wind"></i>: ${data.list[28].wind.speed} mph`;
         card[3].setAttribute(
           "src",
           `http://openweathermap.org/img/w/${data.list[28].weather[0].icon}.png`
         );
         dates[3].textContent = dayjs(data.list[28].dt_txt).format(
-          "MMMM D, YYYY"
+          "dddd"
         );
-        temp[4].textContent = `Temp: ${data.list[35].main.temp} F`;
-        humidity[4].textContent = `Humidity: ${data.list[35].main.humidity}%`;
-        wind[4].textContent = `Wind: ${data.list[35].wind.speed} MPH`;
+        temp[4].innerHTML = `<i class="fas fa-temperature-high"></i>: ${data.list[35].main.temp} ℉`
+        wind[4].innerHTML = `<i class="fas fa-wind"></i>: ${data.list[35].wind.speed} mph`;
         card[4].setAttribute(
           "src",
           `http://openweathermap.org/img/w/${data.list[35].weather[0].icon}.png`
         );
         dates[4].textContent = dayjs(data.list[35].dt_txt).format(
-          "MMMM D, YYYY"
+          "dddd"
         );
       }
     });

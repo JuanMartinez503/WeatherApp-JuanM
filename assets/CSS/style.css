@@ -2,30 +2,125 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+header{
+    background-image: linear-gradient(135deg, rgb(223, 255, 253), #96c5d3);
+padding: 3%;
+margin-bottom: 2%;
+
 }
 body {
-    background-color: rgba(0, 0, 0, .1)
+    background-color: rgb(223, 255, 253)
 }
 .container-1{
     display:flex;
-    flex-direction: row
+    
 
 }
 .right{
-    width: 79vw;
-    margin-left: 1vw;
+    width: 75%;
+    padding: 1%;
    
 }
 .left{
-    width: 20vw;
-    padding-left: 0;
-    padding-left: 5px;
+width: 25%;
+padding: 1%;
 }
 .container-2{
     display: flex;
-    width: 78vw ;
-    margin-right:5px;
+    width: 100;
+    justify-content: space-between;
+    margin-top: 3%;
+    flex-wrap: wrap;
 }
 .card {
     margin-right: 2px;
 }
+.now-container {
+    text-align: center;
+    margin-bottom: 3%;
+    background-color: rgba(255,255,255,.1);
+    position: relative;
+    z-index: 1;
+    border-radius: 20px;
+    box-shadow: 0 0 10px black;
+}
+.now-container::before{
+    position: absolute;
+    content: ' ';
+    background-color: inherit;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    filter: blur(20px);
+    z-index: -1;
+}
+.now-container img{
+    width: 60%;
+}
+.now-container p {
+
+}
+.now-img{
+    width: 20% !important;
+}
+.city {
+    font-size: 2rem;
+    color: rgb(255, 73, 73);
+}
+@media  screen and (max-width:991px) {
+    .container-1{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .left{
+        width: 100%;
+    }
+    .right {
+        
+        width: 90%;
+        margin: 3% auto;
+    }
+    .container-2{
+        display: flex;
+    
+        
+    }
+    .other-containers{
+        display:flex;
+        width: 100%;
+        padding: 3%;
+        border: none;
+    }
+    .now-container img{
+    width: 40%;
+    
+}
+.button-container{
+    width: 40%;
+    margin: 2% auto;
+}
+
+}
+
+    @media (min-width: 1440px) {
+      html {
+        zoom: 1.2;
+      }
+    }
+    
+    @media (min-width: 2560px) {
+      html {
+        zoom: 1.7;
+      }
+    }
+    
+    @media (min-width: 3860px) {
+      html {
+        zoom: 2.5;
+      }
+    }
+  
